@@ -1,5 +1,6 @@
 package com.fakecorp.devslopessmack
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
@@ -37,7 +38,8 @@ class MainActivity : AppCompatActivity() {
 
     fun logInBtnNavClicked(view: View)
     {
-
+        val logInIntent = Intent(this, LogInActivity::class.java)
+        startActivity(logInIntent)
     }
 
     fun addChannelClicked(view: View)
@@ -47,6 +49,6 @@ class MainActivity : AppCompatActivity() {
 
     fun sendMessageBtnClicked(view: View)
     {
-        
+
     }
 }
