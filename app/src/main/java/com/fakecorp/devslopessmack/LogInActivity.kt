@@ -1,5 +1,6 @@
 package com.fakecorp.devslopessmack
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -18,6 +19,8 @@ class LogInActivity : AppCompatActivity() {
 
     fun createUserBtnClicked(view: View)
     {
+        var createUserIntent = Intent(this, CreateUserActivity::class.java)
+        startActivity(createUserIntent)
 
     }
 }
