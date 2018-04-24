@@ -1,15 +1,15 @@
 package com.fakecorp.devslopessmack.Controller.Services
 
 import android.content.Context
+import android.content.Intent
+import android.support.v4.content.LocalBroadcastManager
 import android.util.Log
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.fakecorp.devslopessmack.Services.UserDataService
-import com.fakecorp.devslopessmack.Utilities.URL_CREATE_USER
-import com.fakecorp.devslopessmack.Utilities.URL_LOGIN
-import com.fakecorp.devslopessmack.Utilities.URL_REGISTER
+import com.fakecorp.devslopessmack.Utilities.*
 import org.json.JSONException
 import org.json.JSONObject
 
@@ -28,7 +28,6 @@ object AuthService
         val requestBody = jsonBody.toString()
 
         val registerRequest = object : StringRequest(Method.POST, URL_REGISTER, Response.Listener { response ->
-            println(response)
             complete(true)
         }, Response.ErrorListener {  error ->
             Log.d(TAG, "Error: could no register user: $error")
@@ -70,7 +69,7 @@ object AuthService
 
         }, Response.ErrorListener {error ->
             // this is where we deal with our error
-            Log.d(TAG, "Error: could no register user: $error")
+            Log.d(TAG, "Error: could no log in user: $error")
             complete(false)
         }){
             override fun getBodyContentType(): String {
@@ -132,5 +131,43 @@ object AuthService
         }
 
         Volley.newRequestQueue(context).add(createRequest)
+    }
+
+    fun findUserByEmail(context: Context, complete: (Boolean) -> Unit){
+        val findUserRequest = object : JsonObjectRequest(Method.GET, "$URL_GET_USER$userEmail", null, Response.Listener {response ->
+            try
+            {
+                UserDataService.name = response.getString("name")
+                UserDataService.email = response.getString("email")
+                UserDataService.avatarName = response.getString("avatarName")
+                UserDataService.avatarColor = response.getString("avatarColor")
+                UserDataService.id = response.getString("_id")
+
+                val userDataChange = Intent(BROADCAST_USER_DATA_CHANGE)
+                LocalBroadcastManager.getInstance(context).sendBroadcast(userDataChange)
+                complete(true)
+            }
+            catch(e:JSONException)
+            {
+                Log.d("TAG", "EXC: " + e.localizedMessage)
+            }
+        }, Response.ErrorListener {
+            Log.d(TAG, "Could not find user!")
+            complete(false)
+        }){
+            override fun getBodyContentType(): String {
+                return "application/json; charset=utf-8"
+            }
+
+            override fun getHeaders(): MutableMap<String, String> {
+                val headers = HashMap<String, String>()
+                // non-Kotlin code: headers.put("Authorization", "Bearer $authToken")
+                // More Kotlin like code, using Synthetics
+                headers["Authorization"] = "Bearer $authToken"
+                return headers
+            }
+        }
+
+        Volley.newRequestQueue(context).add(findUserRequest)
     }
 }
