@@ -7,7 +7,7 @@
     tools:context=".Controller.Controller.CreateUserActivity">
 
     <EditText
-        android:id="@+id/userNameText"
+        android:id="@+id/createUserNameText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
@@ -34,7 +34,7 @@
         android:textColor="@android:color/darker_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userNameText" />
+        app:layout_constraintTop_toBottomOf="@+id/createUserNameText" />
 
     <EditText
         android:id="@+id/createPasswordText"
