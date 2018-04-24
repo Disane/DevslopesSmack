@@ -1,9 +1,10 @@
-package com.fakecorp.devslopessmack
+package com.fakecorp.devslopessmack.Controller.Controller
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import com.fakecorp.devslopessmack.R
 
 class LogInActivity : AppCompatActivity() {
 
