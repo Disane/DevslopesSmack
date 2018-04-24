@@ -6,13 +6,14 @@ import android.os.Bundle
 import android.view.View
 import com.fakecorp.devslopessmack.Controller.Services.AuthService
 import com.fakecorp.devslopessmack.R
+import com.fakecorp.devslopessmack.Services.UserDataService
 import kotlinx.android.synthetic.main.activity_create_user.*
 import java.util.*
 
 class CreateUserActivity : AppCompatActivity()
 {
-    var userAvatar = "profileDefault"
-    var avatarColor = "[0.5, 0.5, 0,5, 1]"
+    private var userAvatar = "profileDefault"
+    private var avatarColor = "[0.5, 0.5, 0,5, 1]"
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
@@ -26,12 +27,17 @@ class CreateUserActivity : AppCompatActivity()
         val color = random.nextInt(2)
         val avatar = random.nextInt(28)
 
-        if(color == 0){
+        /*if(color == 0){
             userAvatar = "light$avatar"
         }
         else
         {
             userAvatar = "dark$avatar"
+        }*/
+        userAvatar = when(color)
+        {
+            0 ->  "light$avatar"
+            else -> "dark$avatar"
         }
         val resourceId = resources.getIdentifier(userAvatar, "drawable", packageName)
         createAvatarImageView.setImageResource(resourceId)
@@ -56,6 +62,7 @@ class CreateUserActivity : AppCompatActivity()
 
     fun createUserClicked(view: View)
     {
+        val userName = createUserNameText.text.toString()
         val email = createEmailText.text.toString()
         val password = createPasswordText.text.toString()
 
@@ -65,8 +72,15 @@ class CreateUserActivity : AppCompatActivity()
                 AuthService.loginUser(this, email, password){ loginSuccess ->
                     if(loginSuccess)
                     {
-                        println(AuthService.authToken)
-                        println(AuthService.userEmail)
+                        AuthService.createUser(this, userName, email, userAvatar, avatarColor){createSuccess ->
+                            if(createSuccess)
+                            {
+                                println(UserDataService.avatarName)
+                                println(UserDataService.avatarColor)
+                                println(UserDataService.name)
+                                finish()
+                            }
+                        }
                     }
                 }
             }
