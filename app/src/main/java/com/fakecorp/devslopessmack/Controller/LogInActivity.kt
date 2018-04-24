@@ -22,6 +22,6 @@ class LogInActivity : AppCompatActivity() {
     {
         var createUserIntent = Intent(this, CreateUserActivity::class.java)
         startActivity(createUserIntent)
-
+        finish()
     }
 }

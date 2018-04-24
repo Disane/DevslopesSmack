@@ -18,7 +18,7 @@
         android:layout_marginStart="12dp"
         android:contentDescription="@string/nav_header_desc"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        app:layout_constraintBottom_toTopOf="@+id/logInButtonNavHeader"
+        app:layout_constraintBottom_toTopOf="@+id/loginBtnNavHeader"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/profiledefault" />
 
@@ -46,7 +46,7 @@
         tools:text="disane@gmail.com" />
 
     <Button
-        android:id="@+id/logInButtonNavHeader"
+        android:id="@+id/loginBtnNavHeader"
         android:layout_width="wrap_content"
         android:layout_height="32dp"
         android:layout_marginBottom="8dp"

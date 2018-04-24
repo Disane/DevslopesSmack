@@ -109,12 +109,12 @@ class CreateUserActivity : AppCompatActivity()
         }
     }
 
-    fun errorToast(){
+    private fun errorToast(){
         Toast.makeText(this, "Something went wrong, please try again!", Toast.LENGTH_LONG).show()
         enableSpinner(false)
     }
 
-    fun enableSpinner(enable: Boolean){
+    private fun enableSpinner(enable: Boolean){
         if(enable){
             createSpinner.visibility = View.VISIBLE
         }
