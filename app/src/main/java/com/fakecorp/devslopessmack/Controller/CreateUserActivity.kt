@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import com.fakecorp.devslopessmack.Controller.Services.AuthService
 import com.fakecorp.devslopessmack.R
 import kotlinx.android.synthetic.main.activity_create_user.*
 import java.util.*
@@ -55,6 +56,11 @@ class CreateUserActivity : AppCompatActivity()
 
     fun createUserClicked(view: View)
     {
+        AuthService.registerUser(this, "jtest@jtest.com", "123456") {complete ->
+            if(complete)
+            {
 
+            }
+        }
     }
 }
