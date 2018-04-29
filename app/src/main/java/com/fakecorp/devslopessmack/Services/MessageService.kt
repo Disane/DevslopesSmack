@@ -8,6 +8,7 @@ import com.android.volley.toolbox.Volley
 import com.fakecorp.devslopessmack.Controller.App
 import com.fakecorp.devslopessmack.Controller.Services.AuthService
 import com.fakecorp.devslopessmack.Model.Channel
+import com.fakecorp.devslopessmack.Model.Message
 import com.fakecorp.devslopessmack.Utilities.URL_GET_CHANNELS
 import org.json.JSONException
 import java.lang.reflect.Method
@@ -15,6 +16,7 @@ import java.lang.reflect.Method
 object MessageService {
     val TAG:String? = MessageService::class.java.name
     val channels = ArrayList<Channel>()
+    val messages = ArrayList<Message>()
 
     fun getChannels(complete: (Boolean) -> Unit)
     {
