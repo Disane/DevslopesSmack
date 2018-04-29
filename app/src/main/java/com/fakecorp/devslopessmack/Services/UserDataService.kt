@@ -1,6 +1,7 @@
 package com.fakecorp.devslopessmack.Services
 
 import android.graphics.Color
+import com.fakecorp.devslopessmack.Controller.App
 import com.fakecorp.devslopessmack.Controller.Services.AuthService
 import java.util.*
 
@@ -18,9 +19,9 @@ object UserDataService {
         avatarName = ""
         email = ""
         name = ""
-        AuthService.authToken = ""
-        AuthService.userEmail = ""
-        AuthService.isLoggedIn = false
+        App.prefs.authToken = ""
+        App.prefs.userEmail = ""
+        App.prefs.isLoggedIn = false
     }
 
     fun returnAvatarColor(components: String) : Int

@@ -16,6 +16,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import android.widget.EditText
+import com.fakecorp.devslopessmack.Controller.App
 import com.fakecorp.devslopessmack.Controller.Services.AuthService
 import com.fakecorp.devslopessmack.Model.Channel
 import com.fakecorp.devslopessmack.R
@@ -54,8 +55,9 @@ class MainActivity : AppCompatActivity() {
         toggle.syncState()
         setupAdapters()
 
-        //LocalBroadcastManager.getInstance(this).registerReceiver(userDataChangeReceiver,
-          //      IntentFilter(BROADCAST_USER_DATA_CHANGE))
+        if(App.prefs.isLoggedIn) {
+            AuthService.findUserByEmail(this){}
+        }
     }
 
     override fun onResume() {
@@ -71,7 +73,7 @@ class MainActivity : AppCompatActivity() {
 
     private val userDataChangeReceiver = object : BroadcastReceiver(){
         override fun onReceive(context: Context, intent: Intent?) {
-            if(AuthService.isLoggedIn)
+            if(App.prefs.isLoggedIn)
             {
                 userNameNavHeader.text = UserDataService.name
                 userEmailNavHeader.text = UserDataService.email
@@ -101,7 +103,7 @@ class MainActivity : AppCompatActivity() {
 
     fun logInBtnNavClicked(view: View)
     {
-        if (AuthService.isLoggedIn)
+        if (App.prefs.isLoggedIn)
         {
             UserDataService.logout()
             userNameNavHeader.text = ""
@@ -122,7 +124,7 @@ class MainActivity : AppCompatActivity() {
 
     fun addChannelClicked(view: View)
     {
-        if(AuthService.isLoggedIn)
+        if(App.prefs.isLoggedIn)
         {
             val builder = AlertDialog.Builder(this)
             val dialogView = layoutInflater.inflate(R.layout.add_channel_dialog, null)
