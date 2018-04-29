@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/messageUserImage"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/dark19" />
+
+    <TextView
+        android:id="@+id/messageUserNameLbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toEndOf="@+id/messageUserImage"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Disane" />
+
+    <TextView
+        android:id="@+id/messageBodyLbl"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/messageUserImage"
+        app:layout_constraintTop_toBottomOf="@+id/timeStampLbl"
+        tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sodales aliquam velit eget congue. Praesent porttitor tortor libero, et luctus dui ullamcorper a. Etiam nec sapien augue. Cras a magna id erat dictum sollicitudin. Suspendisse potenti. Vivamus egestas, justo vitae pharetra ultrices, leo velit interdum elit, at venenatis purus tortor eu ex. Donec eleifend purus egestas nulla tincidunt ultrices. Duis in condimentum metus, id vulputate eros. Quisque dignissim metus nisi, pulvinar consequat nunc pellentesque eget. Donec finibus mollis facilisis. In vestibulum ut lectus a maximus. Morbi tincidunt ultricies mollis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam tempor ligula ut nulla facilisis, sed malesuada nisl luctus. Phasellus sit amet ipsum vel tellus accumsan tempus. Donec ut dolor eleifend, auctor quam eu, ullamcorper felis. " />
+
+    <TextView
+        android:id="@+id/timeStampLbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toEndOf="@+id/messageUserNameLbl"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Mar, 11, 10: PM" />
+</android.support.constraint.ConstraintLayout>
